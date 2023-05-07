@@ -1,0 +1,61 @@
+<!-- HEMOS RECIBIDO EL ARRAY DEL PADRE CON EL DECORADOR @INPUT EN hijo.components.ts -->
+<!-- con *ngIf mostramos la tabla solo si la variable mostrar del boton del padre es true -->
+<table class="table table-success table-striped" *ngIf="mostrar">
+  <thead>
+    <tr>
+      <th scope="col">Nro</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Modificar usando queryparams</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- recorremos con la directiva ngFor el segundo parametro let i = index es opcional sirve para crear un indice -->
+    <tr *ngFor="let estudiante of listaEstudiantes; let i = index">
+      <td> {{ i + 1}}</td>
+      <!-- usamos la directiva ngClass para aplicar una classe de bootstrap si cumple las condiciones usando un ternario -->
+      <td>
+        <!-- usamos una etiqueta a para crear un vinculo y usamos la propiedad routerLink para que nos redirija a la
+        pagina de actualizar el estudiante que seleccionemos, pasandole el indice que seria el id del estudiante -->
+        <a [routerLink]="['/actualiza',i]">
+          <span [ngClass]="estudiante.nombre === 'Manuel Perez' ? 'badge bg-success' : 'badge bg-secondary'"> {{
+            estudiante.nombre}}
+          </span>
+        </a>
+
+      </td>
+      <!-- usamos la directiva ngStyle para poner la condicion del que si el estudiante esta promocionado usando un
+        ternario el estilo de letra sea italic en caso contrario que sea normal -->
+      <td [ngStyle]="{ 'font-style' : estudiante.estado === 'Promocionado' ? 'italic' : 'normal'}"> {{
+        estudiante.estado}}
+      </td>
+
+      <!-- creamos los botones para pasar las query params, las query params toma una clave y el valor sera 1 para actualizar y 2 para borrar  -->
+      <td>
+        <button class="btn btn-success me-2">
+          <a [routerLink]="['/actualizaconparams',i]" [queryParams]="{accion:'1'}" class="link">
+            actualizar
+          </a>
+        </button>
+        <button class="btn btn-success">
+          <a [routerLink]="['/actualizaconparams',i]" [queryParams]="{accion:'2'}" class="link">
+            borrar
+          </a>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- usamos el componente nieto desde donde recibimos la informacion , usamos newId que es la instancia
+  creada en nieto.components de la clase EventEmitter y el metodo creado en hijo.components para recibir el evento-->
+<app-nieto (newId)="addId($event)"></app-nieto>
+
+<!-- Listamos los ids recibidos desde el componente nieto -->
+<h1>LISTADO DE IDS SELECCIONADOS DESDE EL COMPONENTE NIETO</h1>
+<!-- ponemos *ngIf="ids.length > 1" para que de inicio no muestre un cuadro vacio -->
+<div class="col-1" *ngIf="ids.length > 1">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of ids">{{item}}</li>
+  </ul>
+</div>

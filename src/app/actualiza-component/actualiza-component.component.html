@@ -1,0 +1,28 @@
+<div class="row justify-content-md-center mt-5 mb-5">
+    <div class="col col-lg-6">
+        <h1>MODIFIACION ESTUDIANTES</h1>
+    </div>
+    <div class="col col-lg-1 offset-1">
+        <button class="btn btn-primary" (click)="volverHome()">ir al Home</button>
+    </div>
+</div>
+
+<!-- FORMULARIO -->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <!-- el for del label y el id del input hace que al hacer click en el label coja el foco el input -->
+            <label class="form-label" for="inputNombre">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" [(ngModel)]="nombre" >
+        </div>
+        <div class="col">
+            <label for="inputEstado" class="form-label">Estado</label>
+            <input type="text" id="inputEstado" class="form-control" [(ngModel)]="estado">
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <button class="btn btn-primary me-2" (click)="actualizaEstudiante()">Modificar</button>
+    <button class="btn btn-primary" (click)="borraEstudiante()">Borrar</button>
+</div>

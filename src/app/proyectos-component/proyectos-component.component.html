@@ -1,0 +1,30 @@
+<div class="row justify-content-md-center mt-5 mb-5">
+    <div class="col col-lg-4">
+        <h1>NUEVOS ESTUDIANTES</h1>
+    </div>
+    <div class="col col-lg-1 offset-3">
+        <button class="btn btn-primary" (click)="volverHome()">ir al Home</button>
+    </div>
+</div>
+
+<!-- FORMULARIO -->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <label class="form-label">nombre</label>
+            <input type="text" class="form-control"  [(ngModel)]="nombre" >
+        </div>
+        <div class="col">
+            <label for="inputPassword5" class="form-label">Estado</label>
+            <input type="text" id="inputPassword5" class="form-control" [(ngModel)]="estado">
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <button class="btn btn-primary" (click)="Agregar()">Agregar</button>
+</div>
+
+<div class="container mt-3">
+    <h3>Creados en el componente proyectos-component</h3>
+</div>

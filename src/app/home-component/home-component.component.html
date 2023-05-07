@@ -1,0 +1,34 @@
+
+<div class="container mt-4">
+    <div>
+      <h1 style="color: chocolate;">DIRECTIVAS ngFor, ngIf, ngStyle, ngClass, ngSwitch</h1>
+      <h1 style="color: chocolate;">Pasar datos entre componentes decoradores @INPUT @OUTPUT</h1>
+      <h1 style="color: chocolate;">Creación de servicios, Routing, paso de parametros en URL</h1>
+    </div>
+     <br>
+     <br>
+    <!-- mostramos la tabla y el boton solo si el array listEstudiantes es mayor que 0 -->
+    <div *ngIf="listEstudiantes.length > 0">
+      <!-- d-flex es display flex  -->
+      <div class="row justify-content-between">
+        <div class="col-10">
+          <h4>Listado creado en el componente hijo app-hijo</h4>
+          <h5> Selecciona un estudiante para hacer modificaciones pasando el id por el url</h5>
+        </div>
+        <div class="col-2">
+          <button type="button" class="btn btn-primary" (click)="toogle()">Toggle</button>
+        </div>
+      </div>
+      <br>
+    </div>
+  
+    <!-- pasamos la lista y el booleano para mostrar el boton Screada en app.components.ts al componente hijo hijo.components.ts -->
+    <app-hijo [listaEstudiantes]=" listEstudiantes" [mostrar]="mostrar"></app-hijo>
+  
+    <!-- se muestra el h3 de abajo solo si la longitud del array listEstudiantes es cero -->
+    <h3 *ngIf="listEstudiantes.length === 0">No hay registros para mostrar</h3>
+  
+    <div class="d-flex justify-content-center bg-danger" style="margin-top: 100px;">
+      <p> PENDIENTE TERMINAR FIREBASE</p>
+    </div>
+  </div>

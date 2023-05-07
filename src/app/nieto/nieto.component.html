@@ -1,0 +1,10 @@
+<div class="mb-3">
+    <!-- el atributo for del label se corresponde con el id del input de esta manera si pulsamos en el label
+    recogemos el foco en el input con el que se relaciona-->
+    <label for="item-input" class="form-label">Selecciona un ID de la lista</label>
+    <!-- añadimos #newId que recibe la informacion introducida por el usario(el id) para mandarsela al evento
+    del boton de abajo-->
+    <input type="text" class="form-control" id="item-input" placeholder="Select Id" #newId >
+    <!-- usamos el evento click para mandar la informacion -->
+    <button type="button" class="btn btn-primary mt-3" (click)="addNewId(newId.value)">añade un item</button>
+  </div>
