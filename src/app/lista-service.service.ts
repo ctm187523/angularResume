@@ -72,11 +72,18 @@ export class ListaServiceService {
   }
 
   //metodo para obtener los estudiantes de la base de datos ,usando el service dataService creado por mi
-  //devuelve un observable, nos permite realizar operaciones asincronas, en segundo plano actualiza la informacion
-  //desde la base de datos cuando hay cambios
+  //para cargar los estudiantes de la base de datos Firebase, tenemos que subscribirnos ya que devuelve un observable
+  //en la subscripcion creamos un arrayfucntion donde ponemos en el array listEstudiantes los estudiantes
+  //recibidos de la base de datos y los retornamos para ser usados cuando un componente inyecte el servicio
   obtenerEstudiantesFireBase() {
 
-    return Object.values(this.dataService.cargarEstudiantes());
+    
+    this.dataService.cargarEstudiantes().subscribe(
+      misEstudiantes => {
+        this.listEstudiantes =  Object.values(misEstudiantes)
+      }
+   );
+   return this.listEstudiantes;
   }
 
   //metodo utilizado para que despues de haber registrado un nuevo estudiante en el componete proyectos-cpmponent

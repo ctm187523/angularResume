@@ -20,29 +20,16 @@ export class HomeComponentComponent implements OnInit {
   mostrar: boolean = true;
 
   //en el constructor llamamos al servicio dataService de donde obtendremos la lista de estudiantes de FireBase
-  constructor( private dataService:DataServices) {
+  constructor( private dataService:DataServices, private service:ListaServiceService) {
     
   }
 
   ngOnInit(): void {
-    //usamos el servicio dataService y usamos el metodo caragrEstudiantes) para cargar los
-    //estudiantes de la base de datos Firebase, tenemos que subscribirnos ya que devuelve un observable
-    //en la subscripcion creamos un arrayfucntion donde ponemos en el array listEstudiantes los estudiantes
-    //recibidos de la base de datos
-    setTimeout( () => { //ponemos un setTimeout porque al añadir un nuevo estudiante y dirigirlo al home de tiempo de registrarse en firebase y luego obtnerlo
-
-      this.dataService.cargarEstudiantes().subscribe(
-        misEstudiantes => {
-          this.listEstudiantes =  Object.values(misEstudiantes)
-          console.log(this.listEstudiantes)
-        }
-     );
-    },100) //ponemos un pequeño tiempo de espera para esperar que cargue en la firebase los cambios
+    //usamos el servicio listaService y usamos el metodo obtenerEstudiantesFireBase 
+    
+    this.listEstudiantes = this.service.obtenerEstudiantesFireBase();
     
   }
-
-
-
 
   //metodo para hacer que se muestre o no la lista cambiando el valor del booleano mostrar
   toogle(): void {
