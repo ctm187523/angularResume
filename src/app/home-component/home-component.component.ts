@@ -27,7 +27,8 @@ export class HomeComponentComponent implements OnInit {
   ngOnInit(): void {
     //usamos el servicio listaService y usamos el metodo obtenerEstudiantesFireBase 
     
-    this.listEstudiantes = this.service.obtenerEstudiantesFireBase();
+    this.service.obtenerEstudiantesFireBase();
+    this.listEstudiantes = Object.values (this.service.listEstudiantes) ;
     
   }
 

@@ -78,12 +78,8 @@ export class ListaServiceService {
   obtenerEstudiantesFireBase() {
 
     
-    this.dataService.cargarEstudiantes().subscribe(
-      misEstudiantes => {
-        this.listEstudiantes =  Object.values(misEstudiantes)
-      }
-   );
-   return this.listEstudiantes;
+    this.listEstudiantes = this.dataService.cargarEstudiantes();
+     
   }
 
   //metodo utilizado para que despues de haber registrado un nuevo estudiante en el componete proyectos-cpmponent

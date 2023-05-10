@@ -37,8 +37,14 @@ export class ProyectosComponentComponent {
     }
     
     this.service.agregarEstudiante(estudiante);
-    
-    //al agregar el nuevo usuario lo redirigimos al Home 
+
+
+    setTimeout( ( ) => {
+
+      //al agregar el nuevo usuario lo redirigimos al Home 
     this.router.navigate(['/'])
+    }, 150)
+    
+    
   }
 }
