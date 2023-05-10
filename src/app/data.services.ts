@@ -32,10 +32,10 @@ export class DataServices {
     }
 
     //metodo para cargar los estudiantes de la base de datos Firebase
-    cargarEstudiantes() {
+    cargarEstudiantes() {  
         //return this.httpClient.get(environment.urlFirebase);
         const request = new XMLHttpRequest();
-        request.open('GET', environment.urlFirebase, false);
+        request.open('GET', environment.urlFirebase, false); 
         request.send(null);
         const response = JSON.parse(request.responseText);
         return response;
