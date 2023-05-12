@@ -35,19 +35,15 @@ export class ListaServiceService {
   //   },
   // ];
 
-   listEstudiantes: students[] = []; //creamos un array vacio para almacenar los datos obtenidos de FireBase
+  listEstudiantes: students[] = []; //creamos un array vacio para almacenar los datos obtenidos de FireBase
 
   llamarVentana(IdRecibido: String) {
     this.servicioVentanaEmergente.mostrarAlert(` Id ${IdRecibido} sera agreagado a la lista`);
   }
 
-  agregarEstudiante(estudiante: students) {
+  async agregarEstudiante(estudiante: students) {
 
-
-   // this.listEstudiantes.push(estudiante); //agregamos el estudiante al array de la lista de estudiantes 
-
-
-    this.dataService.guardarEstudiantes(estudiante); //agregamos el estudiante a la base de datos firebase
+    await this.dataService.guardarEstudiantes(estudiante); //agregamos el estudiante a la base de datos firebase
   }
 
   //metodo para encontrar un estudiante por su id(indice)
@@ -71,15 +67,14 @@ export class ListaServiceService {
     this.listEstudiantes.splice(indice, 1);
   }
 
-  //metodo para obtener los estudiantes de la base de datos ,usando el service dataService creado por mi
-  //para cargar los estudiantes de la base de datos Firebase, tenemos que subscribirnos ya que devuelve un observable
-  //en la subscripcion creamos un arrayfucntion donde ponemos en el array listEstudiantes los estudiantes
-  //recibidos de la base de datos y los retornamos para ser usados cuando un componente inyecte el servicio
-  obtenerEstudiantesFireBase() {
 
-    
-    this.listEstudiantes = this.dataService.cargarEstudiantes();
-     
+  //usamos async y await para que no siga el programa hasta no tener el get de la lista de estudiantess
+  async obtenerEstudiantesFireBase() {
+
+    this.listEstudiantes = Object.values( await this.dataService.cargarEstudiantes()); //usamos Object.values para transformar el objeto obtenido de la peticion a un array
+    console.log(this.listEstudiantes);
+    return this.listEstudiantes;
+ 
   }
 
   //metodo utilizado para que despues de haber registrado un nuevo estudiante en el componete proyectos-cpmponent

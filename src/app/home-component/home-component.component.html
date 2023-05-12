@@ -24,11 +24,16 @@
   
     <!-- pasamos la lista y el booleano para mostrar el boton Screada en app.components.ts al componente hijo hijo.components.ts -->
     <app-hijo [listaEstudiantes]=" listEstudiantes" [mostrar]="mostrar"></app-hijo>
+
+    <div class="container mt-3">
+      <h3> contador con observables: {{ count }}</h3>
+      <button class="btn btn-primary" (click)="contador()"> pulsa para contador</button>
+    </div>
   
     <!-- se muestra el h3 de abajo solo si la longitud del array listEstudiantes es cero -->
     <h3 *ngIf="listEstudiantes.length === 0">No hay registros para mostrar</h3>
   
     <div class="d-flex justify-content-center bg-danger" style="margin-top: 100px;">
-      <p> PENDIENTE TERMINAR FIREBASE</p>
+      <p> PENDIENTE USAR UN OBSERVABLE EN data.service </p>
     </div>
   </div>
